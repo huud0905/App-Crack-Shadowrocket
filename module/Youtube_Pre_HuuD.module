@@ -1,6 +1,6 @@
 #!name = YouTube BlockAd Beta
 #!desc = Hỗ trợ PIP, phát trong nền, chặn quảng cáo YouTube
-#!icon = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+#!icon = https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/main/js/Youtube/YouTube.png
 
 [Rule]
 AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
