@@ -1,43 +1,36 @@
-// ==CapCut Pro Unlocker==
-// @author AI
-// @version 1.0
+// capcut_plus.js
 
-let body = $response.body;
-let url = $request.url;
+if ($request.url.includes("/user/info") || $request.url.includes("/vip/info")) {
+  let obj = JSON.parse($response.body);
 
-try {
-    let obj = JSON.parse(body);
+  // Giả lập tài khoản VIP
+  obj.user = obj.user || {};
+  obj.user.vipInfo = {
+    vipType: "PRO",
+    vipLevel: 3,
+    expireTime: 4070880000, // năm 2099
+    status: 1
+  };
 
-    if (url.includes("/user/")) {
-        // Giả lập tài khoản Pro
-        obj.data = {
-            ...obj.data,
-            "vipStatus": "1",
-            "vipExpire": "2099-12-31T23:59:59Z",
-            "isPro": true
-        };
+  obj.isVip = true;
+
+  $done({ body: JSON.stringify(obj) });
+} else if ($request.url.includes("/watermark/info")) {
+  // Vô hiệu watermark
+  let obj = JSON.parse($response.body);
+  obj.show_watermark = false;
+  obj.watermark = null;
+  $done({ body: JSON.stringify(obj) });
+} else if ($request.url.includes("/template/info") || $request.url.includes("/effect/list")) {
+  // Mở tất cả template & hiệu ứng Pro (nếu có thể)
+  let obj = JSON.parse($response.body);
+  if (obj?.data) {
+    for (let item of obj.data) {
+      item.is_pro = false;
+      item.vip_required = false;
     }
-
-    if (url.includes("/vip/") || url.includes("/template/") || url.includes("/effect/") || url.includes("/music/")) {
-        // Mở khóa VIP, template, nhạc
-        if (obj.data) {
-            obj.data.forEach(item => {
-                item.isVip = false;
-                item.vipType = 0;
-                item.proOnly = false;
-            });
-        }
-    }
-
-    // Xoá watermark (nếu có)
-    if (obj.watermark) {
-        obj.watermark.show = false;
-        obj.watermark.text = "";
-    }
-
-    $done({ body: JSON.stringify(obj) });
-
-} catch (e) {
-    console.log("CapCut Unlocker Error: ", e);
-    $done({});
+  }
+  $done({ body: JSON.stringify(obj) });
+} else {
+  $done({});
 }
