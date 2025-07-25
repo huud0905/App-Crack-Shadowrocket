@@ -3,7 +3,8 @@
 #!author=your_name_here
 
 [Script]
-BilibiliVIP+=type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/resource\/show\/tab,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/Bilibili/bilibili_plus.js
+BilibiliPlus+=type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(resource\/show\/tab|v2\/splash\/list|vip\/account\/info),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/Bilibili/bilibili_plus.js
+
 
 [MITM]
 hostname= %APPEND% app.bilibili.com
