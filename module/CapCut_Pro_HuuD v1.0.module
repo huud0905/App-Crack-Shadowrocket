@@ -1,8 +1,0 @@
-#!name=CapCut_Pro+_HuuD v1.0
-#!desc=Unlock CapCut Pro Features
-
-[Script]
-CapCutPro = type=http-response, pattern=^https:\/\/.+capcut\.com\/.+, requires-body=1, script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/CapCut/capcut.js
-
-[MITM]
-hostname = %APPEND% capcut.com
