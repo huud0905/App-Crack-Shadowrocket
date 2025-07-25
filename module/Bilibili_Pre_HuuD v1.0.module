@@ -1,0 +1,9 @@
+#!name=Bilibili_Pre_HuuD v1.0
+#!desc=Mở khóa VIP Bilibili 
+#!author=your_name_here
+
+[Script]
+BilibiliVIP+=type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/resource\/show\/tab,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/Bilibili/bilibili_plus.js
+
+[MITM]
+hostname= %APPEND% app.bilibili.com
