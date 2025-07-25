@@ -1,10 +1,8 @@
 #!name=Bilibili_Pre_HuuD v1.0
-#!desc=Mở khóa VIP Bilibili 
-#!author=your_name_here
+#!desc=Remove Ads + Unlock 1080p for Bilibili
 
 [Script]
-BilibiliPlus+=type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(resource\/show\/tab|v2\/splash\/list|vip\/account\/info),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/Bilibili/bilibili_plus.js
-
+BilibiliPlus = type=http-response,pattern=^https?:\/\/app\.bilibili\.com\/x\/(v2\/view|resource\/show\/tab|v2\/account\/mine|resource\/top\/activity),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/Bilibili/bilibili_plus.js
 
 [MITM]
-hostname= %APPEND% app.bilibili.com
+hostname = %APPEND% app.bilibili.com
