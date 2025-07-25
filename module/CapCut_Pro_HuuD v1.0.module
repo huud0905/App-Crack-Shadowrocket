@@ -1,7 +1,8 @@
-#!name=CapCut_Pro_HuuD v1.0
-#!desc=Mở khóa Pro CapCut: No watermark, 1080p, hiệu ứng
+#!name=CapCut Pro+
+#!desc=Unlock CapCut Pro Features
+
 [Script]
-capcutpro = type=http-response,pattern=^https:\/\/.*capcut.*\/(vip|user|setting|config).*,requires-body=1,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/CapCut/capcut.js
+CapCutPro = type=http-response, pattern=^https:\/\/.+capcut\.com\/.+, requires-body=1, script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/CapCut/capcut.js
 
 [MITM]
-hostname = %APPEND% capcut.net, api.capcut.net, graph.capcut.net
+hostname = %APPEND% capcut.com
