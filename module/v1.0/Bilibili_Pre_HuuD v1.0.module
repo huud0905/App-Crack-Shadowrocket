@@ -2,7 +2,7 @@
 #!desc=Chặn quảng cáo + Xem 1080p + Bỏ watermark
 
 [Script]
-BilibiliPlus = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(v2\/feed\/index|v2\/view|player\/v2|player\/playurl).*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/Bilibili/v1.0/bilibili_plus.js
+BilibiliPlus = type=http-response,pattern=^https:\/\/app\.bilibili\.com\/x\/(v2\/feed\/index|v2\/view|player\/v2|player\/playurl).*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/v1.0/Bilibili/bilibili_plus.js
 
 [MITM]
 hostname = %APPEND% app.bilibili.com
