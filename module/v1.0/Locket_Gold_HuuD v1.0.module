@@ -4,7 +4,7 @@
 # ~ By HuuD
 revenuecat = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/v1.0/Locket/Locket.js, requires-body=true, max-size=-1, timeout=60
 
-deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/Locket%20/deleteHeader.js, timeout=60
+deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/v1.0/Locket/deleteHeader.js, timeout=60
 
 [MITM]
 hostname = %APPEND% api.revenuecat.com
