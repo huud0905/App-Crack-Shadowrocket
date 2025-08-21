@@ -1,33 +1,31 @@
 const version = 'v2.0';
 
-// Hàm đặt giá trị header
-function setHeaderValue(headers, key, value) {
-    const lowerKey = key.toLowerCase();
-    if (lowerKey in headers) {
-        headers[lowerKey] = value;
-    } else {
-        headers[key] = value;
-    }
+// Lấy headers từ request
+let modifiedHeaders = $request?.headers || {};
+
+// Chuyển toàn bộ key về lowercase để xử lý dễ hơn
+let normalizedHeaders = {};
+for (let key in modifiedHeaders) {
+  normalizedHeaders[key.toLowerCase()] = modifiedHeaders[key];
 }
 
-// Lấy danh sách header từ request
-var modifiedHeaders = $request.headers;
-
-// Danh sách các header cần xóa/cập nhật
+// Danh sách header cần xóa hoặc chỉnh sửa
 const headersToModify = {
-    "X-RevenueCat-ETag": "",
-    "If-None-Match": "",
-    "Cache-Control": "no-cache",
-    "Pragma": "no-cache"
+  "x-revenuecat-etag": null,   // null = xóa hẳn header
+  "if-none-match": null,
+  "cache-control": "no-cache",
+  "pragma": "no-cache"
 };
 
-// Áp dụng thay đổi cho từng header trong danh sách
+// Áp dụng thay đổi
 for (let key in headersToModify) {
-    setHeaderValue(modifiedHeaders, key, headersToModify[key]);
+  if (headersToModify[key] === null) {
+    delete normalizedHeaders[key]; // Xóa hẳn header
+  } else {
+    normalizedHeaders[key] = headersToModify[key]; // Gán giá trị mới
+  }
 }
 
-// Ghi log để kiểm tra header đã bị sửa
-console.log("🛠 Modified Headers:", JSON.stringify(modifiedHeaders, null, 2));
-
-// Trả về request với headers đã chỉnh sửa
-$done({ headers: modifiedHeaders });
+// Trả lại headers với key gốc như cũ
+console.log("🛠 Modified Headers:", JSON.stringify(normalizedHeaders, null, 2));
+$done({ headers: normalizedHeaders });
