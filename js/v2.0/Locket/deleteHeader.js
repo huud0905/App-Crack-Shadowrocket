@@ -1,31 +1,13 @@
-const version = 'v2.0';
+// deleteHeader.js
+if (typeof $request !== 'undefined') {
+  let headers = $request.headers || {};
+  let target = ["x-revenuecat-etag", "if-none-match", "cache-control", "pragma"];
 
-// Lấy headers từ request
-let modifiedHeaders = $request?.headers || {};
-
-// Chuyển toàn bộ key về lowercase để xử lý dễ hơn
-let normalizedHeaders = {};
-for (let key in modifiedHeaders) {
-  normalizedHeaders[key.toLowerCase()] = modifiedHeaders[key];
-}
-
-// Danh sách header cần xóa hoặc chỉnh sửa
-const headersToModify = {
-  "x-revenuecat-etag": null,   // null = xóa hẳn header
-  "if-none-match": null,
-  "cache-control": "no-cache",
-  "pragma": "no-cache"
-};
-
-// Áp dụng thay đổi
-for (let key in headersToModify) {
-  if (headersToModify[key] === null) {
-    delete normalizedHeaders[key]; // Xóa hẳn header
-  } else {
-    normalizedHeaders[key] = headersToModify[key]; // Gán giá trị mới
+  for (let k of target) {
+    let key = Object.keys(headers).find(h => h.toLowerCase() === k);
+    if (key) delete headers[key];
   }
-}
 
-// Trả lại headers với key gốc như cũ
-console.log("🛠 Modified Headers:", JSON.stringify(normalizedHeaders, null, 2));
-$done({ headers: normalizedHeaders });
+  console.log("🛠 Headers sau khi xoá:", JSON.stringify(headers, null, 2));
+  $done({ headers });
+}
