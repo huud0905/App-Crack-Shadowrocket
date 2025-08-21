@@ -1,6 +1,6 @@
 #!name=Locket_Gold_HuuD v2.0
 #!desc=Mở khoá premium cho ứng dụng Locket Widget, hỗ trợ chạy 24/7 không VPN
-#!version=2.1
+#!version=2.0
 
 [Rule]
 # Ép tất cả request đến revenuecat phải qua proxy và MITM
