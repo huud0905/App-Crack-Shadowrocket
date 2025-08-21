@@ -1,32 +1,46 @@
 // Locket.js
-if (typeof $response !== 'undefined') {
-  let body = $response.body || "{}";
-  let obj = JSON.parse(body);
+const version = 'v2.0';
+console.log(`[Locket] Script version: ${version}`);
 
-  const unlockData = {
-    "expires_date": "2099-12-31T23:59:59Z",
-    "purchase_date": "2025-01-01T00:00:00Z",
-    "ownership_type": "PURCHASED",
-    "store": "app_store"
-  };
+try {
+    let body = $response.body;
+    console.log("[Locket] Original Response:", body);
 
-  // Tạo object nếu chưa có
-  obj.subscriber = obj.subscriber || {};
-  obj.subscriber.entitlements = obj.subscriber.entitlements || {};
-  obj.subscriber.subscriptions = obj.subscriber.subscriptions || {};
+    let obj = JSON.parse(body);
 
-  // Set entitlement Premium
-  obj.subscriber.entitlements["pro"] = {
-    ...unlockData,
-    "product_identifier": "com.locket02.premium.yearly"
-  };
+    // Tạo object Premium
+    const premiumInfo = {
+        "grace_period_expires_date": null,
+        "purchase_date": "2025-01-01T01:04:17Z",
+        "product_identifier": "com.locket02.premium.yearly",
+        "expires_date": "2099-12-18T01:04:17Z"
+    };
 
-  // Set subscription Premium
-  obj.subscriber.subscriptions["com.locket02.premium.yearly"] = {
-    ...unlockData,
-    "period_type": "normal"
-  };
+    const subscriptionInfo = {
+        "is_sandbox": false,
+        "ownership_type": "PURCHASED",
+        "billing_issues_detected_at": null,
+        "period_type": "normal",
+        "expires_date": "2099-12-18T01:04:17Z",
+        "grace_period_expires_date": null,
+        "unsubscribe_detected_at": null,
+        "original_purchase_date": "2025-01-01T01:04:18Z",
+        "purchase_date": "2025-01-01T01:04:17Z",
+        "store": "app_store"
+    };
 
-  console.log("✅ Premium unlocked thành công!");
-  $done({ body: JSON.stringify(obj) });
+    // Chèn dữ liệu Premium
+    if (obj.subscriber) {
+        obj.subscriber.subscriptions["com.locket02.premium.yearly"] = subscriptionInfo;
+        obj.subscriber.entitlements["pro"] = premiumInfo;
+        console.log("[Locket] Premium data injected successfully!");
+    } else {
+        console.log("[Locket] subscriber key not found in response!");
+    }
+
+    $done({ body: JSON.stringify(obj) });
+
+} catch (err) {
+    console.log("[Locket] Error:", err);
+    $done({});
 }
