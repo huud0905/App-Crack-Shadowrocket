@@ -1,4 +1,4 @@
-// Locket.js - từ v1.0 gốc, giữ nguyên logic Premium
+// Locket.js - Bản 2.0, ngày tháng đổi sang 2025-01-02
 if (typeof $response !== 'undefined') {
   try {
     var mapping = {
@@ -9,7 +9,7 @@ if (typeof $response !== 'undefined') {
     var ua = $request.headers["User-Agent"] || $request.headers["user-agent"];
     var obj = JSON.parse($response.body || "{}");
 
-    obj.Attention = "Chúc mừng bạn! Vui lòng không bán hoặc chia sẻ cho người khác!";
+    obj.Attention = "Chúc mừng bạn! Bản 2.0 - Premium Active!";
 
     var premiumSub = {
       is_sandbox: false,
@@ -19,14 +19,14 @@ if (typeof $response !== 'undefined') {
       expires_date: "2099-12-18T01:04:17Z",
       grace_period_expires_date: null,
       unsubscribe_detected_at: null,
-      original_purchase_date: "2025-01-01T01:04:18Z",
-      purchase_date: "2025-01-01T01:04:17Z",
+      original_purchase_date: "2025-01-02T01:04:18Z",
+      purchase_date: "2025-01-02T01:04:17Z",
       store: "app_store"
     };
 
     var premiumEnt = {
       grace_period_expires_date: null,
-      purchase_date: "2025-01-01T01:04:17Z",
+      purchase_date: "2025-01-02T01:04:17Z",
       product_identifier: "com.locket02.premium.yearly",
       expires_date: "2099-12-18T01:04:17Z"
     };
@@ -47,11 +47,11 @@ if (typeof $response !== 'undefined') {
       obj.subscriber.entitlements.pro = premiumEnt;
     }
 
-    console.log("[Locket] ✅ Premium data injected!");
+    console.log("[Locket v2.0] ✅ Premium injected!");
     $done({ body: JSON.stringify(obj) });
 
   } catch (e) {
-    console.log("[Locket] ❌ Error:", e);
+    console.log("[Locket v2.0] ❌ Error:", e);
     $done({});
   }
 }
