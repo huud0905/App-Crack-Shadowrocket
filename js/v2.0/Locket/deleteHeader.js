@@ -1,13 +1,37 @@
-// deleteHeader.js
-if (typeof $request !== 'undefined') {
-  let headers = $request.headers || {};
-  let target = ["x-revenuecat-etag", "if-none-match", "cache-control", "pragma"];
+// DeleteHeader.js
+const version = 'v2.0';
+console.log(`[DeleteHeader] Script version: ${version}`);
 
-  for (let k of target) {
-    let key = Object.keys(headers).find(h => h.toLowerCase() === k);
-    if (key) delete headers[key];
-  }
+try {
+    let headers = $request.headers;
+    console.log("[DeleteHeader] Original Headers:", JSON.stringify(headers, null, 2));
 
-  console.log("🛠 Headers sau khi xoá:", JSON.stringify(headers, null, 2));
-  $done({ headers });
+    // Danh sách header cần xóa/cập nhật
+    const headersToModify = {
+        "X-RevenueCat-ETag": "",
+        "If-None-Match": "",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache"
+    };
+
+    // Hàm sửa header
+    function setHeaderValue(headers, key, value) {
+        const lowerKey = key.toLowerCase();
+        if (lowerKey in headers) {
+            headers[lowerKey] = value;
+        } else {
+            headers[key] = value;
+        }
+    }
+
+    for (let key in headersToModify) {
+        setHeaderValue(headers, key, headersToModify[key]);
+    }
+
+    console.log("[DeleteHeader] Modified Headers:", JSON.stringify(headers, null, 2));
+    $done({ headers });
+
+} catch (err) {
+    console.log("[DeleteHeader] Error:", err);
+    $done({});
 }
