@@ -1,4 +1,4 @@
-const version = 'V2.0';
+const version = 'v2.0';
 
 // Hàm đặt giá trị header
 function setHeaderValue(headers, key, value) {
