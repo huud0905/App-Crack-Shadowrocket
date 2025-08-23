@@ -11,14 +11,14 @@ const premiumSubscription = {
   ownership_type: "PURCHASED",
   period_type: "normal",
   expires_date: "2099-12-18T01:04:17Z",
-  original_purchase_date: "2025-01-01T01:04:18Z",
-  purchase_date: "2025-01-01T01:04:17Z",
+  original_purchase_date: "2025-01-02T01:04:18Z", // Đã sửa thành ngày 2/1/2025
+  purchase_date: "2025-01-02T01:04:17Z", // Đã sửa thành ngày 2/1/2025
   store: "app_store"
 };
 
 // Thông tin quyền lợi
 const entitlementInfo = {
-  purchase_date: "2025-01-01T01:04:17Z",
+  purchase_date: "2025-01-02T01:04:17Z", // Đã sửa thành ngày 2/1/2025
   product_identifier: "com.ohoang7.premium.yearly",
   expires_date: "2099-12-18T01:04:17Z"
 };
