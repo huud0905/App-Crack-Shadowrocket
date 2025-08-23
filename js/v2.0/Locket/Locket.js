@@ -1,48 +1,42 @@
-// ========= ID ========= //
 const mapping = {
-  '%E8%BD%A6%E7%A5%A8%E7%A5%A8': ['vip+watch_vip'],
-  'Locket': ['Gold']
+  'Locket': ['Gold']
 };
 
-var ua = $request.headers["User-Agent"] || $request.headers["user-agent"];
-var obj = JSON.parse($response.body);
+const userAgent = $request.headers["User-Agent"] || $request.headers["user-agent"];
+let responseBody = JSON.parse($response.body);
 
-obj.Attention = "Chúc mừng bạn! Vui lòng không bán hoặc chia sẻ cho người khác!";
-
-var ohoang7 = {
-  is_sandbox: false,
-  ownership_type: "PURCHASED",
-  billing_issues_detected_at: null,
-  period_type: "normal",
-  expires_date: "2099-12-18T01:04:17Z",
-  grace_period_expires_date: null,
-  unsubscribe_detected_at: null,
-  original_purchase_date: "2025-01-02T01:04:18Z",
-  purchase_date: "2025-01-02T01:04:17Z",
-  store: "app_store"
+// Thông tin gói đăng ký Premium
+const premiumSubscription = {
+  is_sandbox: false,
+  ownership_type: "PURCHASED",
+  period_type: "normal",
+  expires_date: "2099-12-18T01:04:17Z",
+  original_purchase_date: "2025-01-01T01:04:18Z",
+  purchase_date: "2025-01-01T01:04:17Z",
+  store: "app_store"
 };
 
-var huud = {
-  grace_period_expires_date: null,
-  purchase_date: "2025-01-02T01:04:17Z",
-  product_identifier: "com.ohoang7.premium.yearly",
-  expires_date: "2099-12-18T01:04:17Z"
+// Thông tin quyền lợi
+const entitlementInfo = {
+  purchase_date: "2025-01-01T01:04:17Z",
+  product_identifier: "com.ohoang7.premium.yearly",
+  expires_date: "2099-12-18T01:04:17Z"
 };
 
-const match = Object.keys(mapping).find(e => ua.includes(e));
+const match = Object.keys(mapping).find(key => userAgent.includes(key));
 
 if (match) {
-  let [e, s] = mapping[match];
-  if (s) {
-    huud.product_identifier = s;
-    obj.subscriber.subscriptions[s] = ohoang7;
-  } else {
-    obj.subscriber.subscriptions["com.ohoang7.premium.yearly"] = ohoang7;
-  }
-  obj.subscriber.entitlements[e] = huud;
+  const entitlementName = mapping[match][0];
+  entitlementInfo.product_identifier = `com.huud.app.${entitlementName.toLowerCase()}`;
+  responseBody.subscriber.subscriptions[entitlementInfo.product_identifier] = premiumSubscription;
+  responseBody.subscriber.entitlements[entitlementName] = entitlementInfo;
 } else {
-  obj.subscriber.subscriptions["com.ohoang7.premium.yearly"] = ohoang7;
-  obj.subscriber.entitlements.pro = huud;
+  // Trường hợp không khớp mapping, áp dụng cho gói mặc định
+  responseBody.subscriber.subscriptions["com.ohoang7.premium.yearly"] = premiumSubscription;
+  responseBody.subscriber.entitlements.pro = entitlementInfo;
 }
 
-$done({ body: JSON.stringify(obj) });
+// Thêm thông báo tùy chỉnh
+responseBody.Attention = "Chúc mừng bạn! Vui lòng không bán hoặc chia sẻ cho người khác!";
+
+$done({body: JSON.stringify(responseBody)});
