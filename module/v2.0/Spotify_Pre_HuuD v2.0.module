@@ -1,5 +1,5 @@
 #!name = Spotify_Pre_HuuD v2.0
-#!desc = Spotify Premium Unlock
+#!desc = Spotify Premium Unlock, cập nhật từ bản v1.0, fix lỗi từ bản v1.0
 
 [Header Rewrite]
 ^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
