@@ -1,5 +1,5 @@
-#!name=bilibili去广告8.13(>=iOS15)
-#!desc=开屏页广告,推荐页广告,动态(最常访问/推荐话题/列表广告),视频播放页面(up主推荐广告)
+#!name=Bilibili_Plus_HuuD v2.0
+#!desc=Chặn quảng cáo cho bilibili, fix lỗi v1.0
 # 仓库地址 https://github.com/app2smile/rules
 # h2下走grpc.biliapi.net(Surge TF2332以上版本可正常解析) h1时走app.bilibili.com
 
