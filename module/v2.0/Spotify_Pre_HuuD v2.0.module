@@ -1,6 +1,5 @@
 #!name = Spotify Only
 #!desc = Spotify Premium Unlock
-#!author = Gấu Lỏz CUTO_Tổng hợp các URL trên mạng
 
 [Header Rewrite]
 ^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
