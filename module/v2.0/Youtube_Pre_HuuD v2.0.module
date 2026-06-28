@@ -1,5 +1,5 @@
 #!name = Youtube_Pre_HuuD v2.0
-#!desc = Hỗ trợ PIP, phát trong nền, chặn quảng cáo YouTube
+#!desc = Hỗ trợ PIP, phát trong nền, chặn quảng cáo YouTube, fix lỗi của bản v1.0
 #!icon = https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/main/js/v1.0/Youtube/YouTube.png
 
 [Rule]
