@@ -1,4 +1,4 @@
-#!name=IOS_Location_Spoofer
+#!name=IOS_Location_Spoofer_v1.0
 #!desc=Chặn các tọa độ GPS do máy chủ định vị của Apple trả về và thay thế chúng bằng một vị trí tùy chỉnh. Hoạt động với Shadowrocket/Surge.
 
 [Script]
