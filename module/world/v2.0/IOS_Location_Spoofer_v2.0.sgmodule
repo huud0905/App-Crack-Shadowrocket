@@ -1,10 +1,8 @@
-#!name=IOS_Location_Spoofer_v2.0 
+#!name=IOS_Location_Spoofer_v2.0
 #!desc=Chặn các tọa độ GPS do máy chủ định vị của Apple trả về và thay thế chúng bằng một vị trí tùy chỉnh. v2.0: vị trí di chuyển theo thực tế. Hoạt động với Shadowrocket/Surge.
 
 [Script]
-Location Tracker = type=cron,cronexp=* * * * *,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/world/v2.0/LocationTracker.js,timeout=10
-
-iOS Location Spoofer = type=http-response,pattern=^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|bluedot\.is\.autonavi\.com(?:\.gds\.alibabadns\.com)?)\/clls\/wloc(?:\?.*)?$,requires-body=1,binary-body-mode=1,max-size=1048576,timeout=10,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/world/v2.0/IOS_Location_Spoofer.js,argument=mode=response&debug=false
+iOS Location Spoofer = type=http-response,pattern=^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|bluedot\.is\.autonavi\.com(?:\.gds\.alibabadns\.com)?)\/clls\/wloc(?:\?.*)?$,requires-body=1,binary-body-mode=1,max-size=1048576,timeout=10,script-path=https://raw.githubusercontent.com/huud0905/App-Crack-Shadowrocket/refs/heads/main/js/world/v2.0/IOS_Location_Spoofer.js,argument=mode=response&latitude=55.755800&longitude=37.617300&horizontalAccuracy=39&verticalAccuracy=1000&altitude=530&debug=false
 
 [MITM]
 hostname = %APPEND% gs-loc.apple.com, gs-loc-cn.apple.com, bluedot.is.autonavi.com, bluedot.is.autonavi.com.gds.alibabadns.com
